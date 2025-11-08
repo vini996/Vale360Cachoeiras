@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesouros Escondidos de Três Braços</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d7a4f 50%, #50c878 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(26, 77, 46, 0.95), rgba(45, 122, 79, 0.95));
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header p {
+            font-size: 1.3em;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .intro {
+            background: white;
+            padding: 50px;
+            margin: 40px auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            color: #2d7a4f;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .cachoeira-section {
+            background: white;
+            margin: 40px auto;
+            padding: 60px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out both;
+        }
+
+        .cachoeira-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #50c878, #2d7a4f);
+        }
+
+        .cachoeira-section h2 {
+            color: #1a4d2e;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 5px solid #50c878;
+            animation: slideRight 0.8s ease-out;
+        }
+
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .cachoeira-section h3 {
+            color: #2d7a4f;
+            font-size: 1.8em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cachoeira-section h3::before {
+            content: '🌿';
+            font-size: 1.2em;
+        }
+
+        .cachoeira-section p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.9;
+        }
+
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-container {
+            width: 100%;
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .map-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #2d7a4f, #1a4d2e);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 30px auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .map-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(45, 122, 79, 0.4);
+            background: linear-gradient(135deg, #3a9861, #246139);
+        }
+
+        .map-button::before {
+            content: '📍 ';
+            font-size: 1.2em;
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid #2d7a4f;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .info-box h4 {
+            color: #1a4d2e;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box h4::before {
+            content: '📍';
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3cd, #ffe4a3);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid #ff9800;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+        }
+
+        .warning-box h4 {
+            color: #d84315;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .warning-box h4::before {
+            content: '⚠️';
+        }
+
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #50c878, transparent);
+            margin: 60px 0;
+            animation: expand 1.5s ease-out;
+        }
+
+        @keyframes expand {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1a4d2e, #0f5132);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .authors {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .author {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .author:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #50c878, #2d7a4f);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .scroll-indicator:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .cachoeira-section {
+                padding: 30px 20px;
+            }
+
+            .cachoeira-section h2 {
+                font-size: 1.8em;
+            }
+
+            .intro {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌿 Tesouros Escondidos de Três Braços 🌿</h1>
+        <p>Aventura e Natureza Exuberante</p>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <p>
+                Embarque conosco em uma jornada pelas maravilhas naturais de Três Braços, onde a 
+                história e a aventura se encontram em paisagens de tirar o fôlego. Este guia convida 
+                você a explorar destinos singulares que prometem experiências inesquecíveis. Prepare-se 
+                para desvendar os segredos e a beleza intocada que aguardam por você.
+            </p>
+        </section>
+
+        <!-- Cachoeira do Inferno -->
+        <section class="cachoeira-section">
+            <h2>Cachoeira do Inferno: Onde a História Encontra a Natureza Selvagem</h2>
+            
+            <!-- ========== VÍDEO - CACHOEIRA DO INFERNO ========== -->
+            <!-- INSTRUÇÕES: Substitua "inferno-video.mp4" pelo nome do seu arquivo de vídeo -->
+            <!-- Coloque o vídeo na pasta "imagens/" -->
+            <div class="video-container">
+                <video autoplay loop muted playsinline>
+                    <source src="imagens/inferno-video.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos HTML5.
+                </video>
+            </div>
+
+            <p>
+                A Cachoeira do Inferno, um nome que ressoa com mistério e grandiosidade, é muito 
+                mais do que um espetáculo natural; é um marco histórico da região de Três Braços. 
+                Antigamente, suas poderosas águas eram a força motriz de uma hidrelétrica, 
+                desempenhando um papel crucial no fornecimento de energia para comunidades 
+                vizinhas como Cravolândia e Santa Inês, e até mesmo iluminando as casas de Três 
+                Braços. Essa herança de vitalidade e progresso confere à cachoeira uma aura de 
+                respeito e admiração, lembrando-nos da capacidade da natureza de moldar o 
+                desenvolvimento humano.
+            </p>
+
+            <p>
+                Hoje, a Cachoeira do Inferno é um convite irrecusável para os amantes da fotografia e 
+                da pesca. Suas paisagens são um verdadeiro deleite para os olhos, com quedas d'água 
+                que desenham cenários perfeitos para capturar momentos inesquecíveis e recantos 
+                serenos ideais para a prática da pesca, onde a tranquilidade é a companhia perfeita.
+            </p>
+
+            <p>
+                Para os mais aventureiros e com experiência em natação, as profundezas da cachoeira 
+                oferecem um desafio revigorante. É um local que exige respeito e habilidade, 
+                prometendo uma experiência única para aqueles que se sentem à vontade em águas 
+                profundas. A correnteza, embora poderosa, é parte da majestade do local, lembrando-
+                nos da força indomável da natureza.
+            </p>
+
+            <div class="info-box">
+                <h4>Desvendando o Caminho para a Cachoeira do Inferno</h4>
+                <p>
+                    O acesso à Cachoeira do Inferno é uma aventura em si, com rotas que variam em 
+                    dificuldade, mas que sempre recompensam o explorador. Uma das opções mais 
+                    pitorescas começa na comunidade do Congú. Ao chegar, um ponto de ônibus 
+                    estrategicamente localizado em frente a uma fazenda serve como um marco inicial. 
+                    A partir daí, a jornada continua por um caminho que se bifurca. Siga pela direita, onde 
+                    um tanque de água se torna seu próximo ponto de referência, e continue adiante, 
+                    imerso na paisagem que o levará a este tesouro natural.
+                </p>
+            </div>
+
+            <div class="warning-box">
+                <h4>Importante: Segurança em Primeiro Lugar</h4>
+                <p>
+                    É importante lembrar que, como em todo ambiente natural, a prudência é sua melhor 
+                    aliada. A vida selvagem, incluindo a presença de cobras peçonhentas, faz parte do 
+                    ecossistema local, e a correnteza da cachoeira pode ser forte. Aprecie a beleza, mas 
+                    sempre com cautela e respeito pela natureza.
+                </p>
+            </div>
+
+            <!-- ========== GALERIA - CACHOEIRA DO INFERNO ========== -->
+            <!-- INSTRUÇÕES: Adicione 3 imagens da Cachoeira do Inferno aqui -->
+            <div class="gallery">
+                <img src="imagens/inferno1.jpg" alt="Vista da Cachoeira do Inferno">
+                <img src="imagens/inferno2.jpg" alt="Detalhe da Cachoeira do Inferno">
+                <img src="imagens/inferno3.jpg" alt="Paisagem da Cachoeira do Inferno">
+            </div>
+
+            <!-- Botão para localização no Google Maps -->
+            <div class="button-container">
+                <a href="https://maps.app.goo.gl/P7f1Y4AnoAq2TWuT8?g_st=iw" target="_blank" class="map-button">Ver no Google Maps</a>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Cachoeira das Sete Voltas -->
+        <section class="cachoeira-section">
+            <h2>Cachoeira das Sete Voltas: Um Refúgio de Serenidade</h2>
+
+            <p>
+                A Cachoeira das Sete Voltas é um refúgio de paz e beleza que, por ser uma área mais 
+                reservada, oferece uma experiência de visitação exclusiva e íntima. Com a devida 
+                autorização, os visitantes podem desfrutar de um ambiente sereno e intocado, onde a 
+                natureza se manifesta em sua plenitude. Suas águas, que há muito tempo servem 
+                para a irrigação e para o banho de animais como cavalos, carregam a essência de 
+                uma conexão profunda entre o homem e a terra, um testemunho da vida rural e da 
+                sustentabilidade.
+            </p>
+
+            <p>
+                A beleza da Cachoeira das Sete Voltas reside em sua delicadeza e na forma como se 
+                integra à paisagem. Embora sua força d'água não seja tão avassaladora quanto a de 
+                outras cachoeiras, ela possui um encanto particular, com pedras que, embora 
+                escorregadias, convidam à admiração e à contemplação. É um local para se reconectar 
+                com a natureza, sentir a brisa e ouvir o suave murmúrio das águas, um convite à 
+                tranquilidade e à renovação.
+            </p>
+
+            <div class="info-box">
+                <h4>Acesso Tranquilo à Cachoeira das Sete Voltas</h4>
+                <p>
+                    Chegar à Cachoeira das Sete Voltas é uma experiência descomplicada e agradável. 
+                    Partindo da estrada que liga Cravolândia a Três Braços, a rota é direta e visualmente 
+                    recompensadora. Basta seguir o caminho principal até que a cachoeira se revele, 
+                    aninhada em um mangueiro pitoresco, próximo à estrada. A facilidade de acesso, 
+                    aliada à necessidade de autorização prévia por se tratar de uma área privada, garante 
+                    que a visita seja sempre organizada e respeitosa com o ambiente e seus proprietários.
+                </p>
+            </div>
+
+            <div class="warning-box">
+                <h4>Atenção: Área Privada</h4>
+                <p>
+                    Lembre-se sempre de obter permissão para desfrutar plenamente deste tesouro 
+                    escondido e de ter cautela com as pedras escorregadias, garantindo uma experiência 
+                    segura e memorável.
+                </p>
+            </div>
+
+            <!-- ========== GALERIA - SETE VOLTAS ========== -->
+            <!-- INSTRUÇÕES: Adicione 3 imagens da Cachoeira das Sete Voltas aqui -->
+            <div class="gallery">
+                <img src="imagens/sete-voltas1.jpg" alt="Cachoeira das Sete Voltas">
+                <img src="imagens/sete-voltas2.jpg" alt="Vista da Cachoeira das Sete Voltas">
+                <img src="imagens/sete-voltas3.jpg" alt="Águas da Cachoeira das Sete Voltas">
+            </div>
+
+            <!-- Botão para localização no Google Maps -->
+            <div class="button-container">
+                <a href="https://maps.app.goo.gl/tQGBp8ceBdUuRuPm8?g_st=iw" target="_blank" class="map-button">Ver no Google Maps</a>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Cachoeira de Cesar -->
+        <section class="cachoeira-section">
+            <h2>Cachoeira de Cesar: A Joia Escondida de Três Braços</h2>
+
+            <p>
+                Outrora um vibrante ponto de encontro e lazer para as famílias locais, a Cachoeira de 
+                Cesar carrega consigo histórias de verões ensolarados e risadas contagiantes. 
+                Imagine-se em um tempo onde as águas cristalinas eram o palco para mergulhos 
+                refrescantes e a natureza intocada convidava à diversão descompromissada. Embora 
+                os relatos locais não mencionem incidentes trágicos, a memória de sua beleza e 
+                vitalidade permanece viva.
+            </p>
+
+            <p>
+                O acesso a este paraíso, no entanto, exige um pouco de aventura e cautela. A trilha que 
+                serpenteia até a cachoeira revela uma escadaria natural, que, embora desafiadora 
+                devido à presença de musgo e à umidade constante trazida pela brisa da queda 
+                d'água, recompensa cada passo com vistas deslumbrantes. A sensação de superação 
+                ao descer por este caminho íngreme é apenas o prelúdio da grandiosidade que o 
+                espera.
+            </p>
+
+            <p>
+                A Cachoeira de Cesar é mais do que um simples corpo d'água; é um espetáculo da 
+                natureza. Suas grandes proporções e a profusão de vida que a cerca a transformam 
+                em um santuário natural. A flora e a fauna locais prosperam em seu entorno, criando 
+                um ambiente de biodiversidade que encanta e inspira. É o local ideal para fotógrafos, 
+                observadores de aves e para todos que buscam uma conexão profunda com o meio 
+                ambiente.
+            </p>
+
+            <div class="info-box">
+                <h4>Como Chegar à Cachoeira de Cesar</h4>
+                <p>
+                    A sua aventura começa em Três Braços. De lá, siga pela estrada que leva à acolhedora 
+                    comunidade da Piabanha. A rota é singular e bem definida, tornando quase 
+                    impossível se perder. Fique atento à sinalização e, ao avistar a imponente Fazenda do 
+                    Rio Preto, você saberá que chegou ao seu destino. É fundamental, por respeito à propriedade 
+                    privada e para garantir a sua segurança, solicitar a devida autorização ao proprietário 
+                    da fazenda antes de prosseguir. Uma vez concedida a permissão, uma trilha bem 
+                    demarcada o guiará até a deslumbrante beleza natural da cachoeira.
+                </p>
+            </div>
+
+            <!-- ========== GALERIA - CACHOEIRA DE CESAR ========== -->
+            <!-- INSTRUÇÕES: Adicione 6 imagens da Cachoeira de Cesar aqui -->
+            <div class="gallery">
+                <img src="imagens/cesar1.jpg" alt="Cachoeira de Cesar">
+                <img src="imagens/cesar2.jpg" alt="Trilha da Cachoeira de Cesar">
+                <img src="imagens/cesar3.jpg" alt="Vista panorâmica da Cachoeira de Cesar">
+                <img src="imagens/cesar4.jpg" alt="Cachoeira de Cesar - Ângulo 4">
+                <img src="imagens/cesar5.jpg" alt="Cachoeira de Cesar - Ângulo 5">
+                <img src="imagens/cesar6.jpg" alt="Cachoeira de Cesar - Ângulo 6">
+            </div>
+
+            <!-- Botão para localização no Google Maps -->
+            <div class="button-container">
+                <a href="https://maps.app.goo.gl/fRvZzrPriXm3vfVj6?g_st=iw" target="_blank" class="map-button">Ver no Google Maps</a>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Cachoeira do Sobradinho -->
+        <section class="cachoeira-section">
+            <h2>Cachoeira do Sobradinho: Um Refúgio de Paz e História</h2>
+
+            <p>
+                Escondida da agitação e pouco explorada pelos roteiros turísticos convencionais, a 
+                Cachoeira do Sobradinho é um convite à introspecção e à descoberta de um passado 
+                simples e autêntico. Suas águas, que hoje servem principalmente para a vital irrigação 
+                das terras férteis da região, outrora desempenharam um papel central na vida 
+                cotidiana das comunidades, sendo utilizadas para lavar roupas, utensílios e nutrir as 
+                famílias com sua pureza. Este legado de utilidade e conexão com a terra confere à 
+                cachoeira um charme especial e uma história a ser contada.
+            </p>
+
+            <p>
+                O caminho até a Cachoeira do Sobradinho é uma jornada à parte, que adiciona um 
+                toque de exclusividade à sua visita. Embora o acesso possa ser um pouco mais 
+                desafiador, com trechos de mata densa e um terreno irregular, cada obstáculo 
+                superado é um passo em direção a um cenário de beleza rústica e intocada. Esta 
+                cachoeira, apesar de sua natureza mais reclusa, é um verdadeiro deleite para os olhos, 
+                especialmente no ponto de sua queda d'água. Ali, a força da natureza esculpiu uma 
+                pequena, mas encantadora, mini piscina natural, um convite irrecusável para um 
+                mergulho refrescante e para momentos de puro deleite em meio à tranquilidade.
+            </p>
+
+            <div class="info-box">
+                <h4>Como Chegar à Cachoeira do Sobradinho</h4>
+                <p>
+                    Partindo de Três Braços, siga pela pitoresca estrada do Sobradinho. A localização da 
+                    cachoeira pode ser um pouco discreta, pois ela se aninha discretamente ao lado da 
+                    estrada, e o acesso é feito por um caminho mais estreito, que adiciona um elemento 
+                    de descoberta à sua chegada. Este detalhe, no entanto, apenas realça a sensação de 
+                    ter encontrado um verdadeiro refúgio, um lugar onde a natureza se manifesta em sua 
+                    forma mais pura e serena, longe das multidões.
+                </p>
+            </div>
+
+            <!-- ========== GALERIA - CACHOEIRA DO SOBRADINHO ========== -->
+            <!-- INSTRUÇÕES: Adicione 3 imagens da Cachoeira do Sobradinho aqui -->
+            <div class="gallery">
+                <img src="imagens/sobradinho1.jpg" alt="Cachoeira do Sobradinho">
+            </div>
+
+            <!-- Botão para localização no Google Maps -->
+            <div class="button-container">
+                <a href="https://maps.app.goo.gl/k28RkfuWbZE7gofd7?g_st=iw" target="_blank" class="map-button">Ver no Google Maps</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p><strong>✨ Equipe de Autores ✨</strong></p>
+        <div class="authors">
+            <div class="author">José Vinícius</div>
+            <div class="author">Rafael</div>
+            <div class="author">Thaise</div>
+            <div class="author">Wanderson</div>
+        </div>
+        <p style="margin-top: 30px; opacity: 0.8;">Três Braços - Bahia | 2025</p>
+    </footer>
+
+    <div class="scroll-indicator" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+
+    <script>
+        // Animação ao scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease-out forwards';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.cachoeira-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mostrar/ocultar botão de scroll
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollIndicator.style.display = 'flex';
+            } else {
+                scrollIndicator.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
